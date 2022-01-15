@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "TAILWIND_MODE=watch next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
   },
   "dependencies": {
-    "daisyui": "^1.22.2",
-    "next": "^12.0.5",
+    "daisyui": "^1.16.2",
+    "next": "^12.0.8",
     "postcss-import": "^13.0.0",
     "postcss-preset-env": "^6.7.0",
     "react": "17.0.2",
@@ -29,7 +29,7 @@
     "lint-staged": ">=10",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.14",
+    "tailwindcss": "^3.0.7",
     "typescript": "^4.5.2"
   },
   "lint-staged": {
