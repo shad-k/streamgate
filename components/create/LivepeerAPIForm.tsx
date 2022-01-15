@@ -1,7 +1,7 @@
 import React, { FormEvent } from 'react';
 import { BiLinkExternal } from 'react-icons/bi';
 
-import useCreateStream from '../hooks/useCreateStream';
+import useCreateStream from '../../hooks/useCreateStream';
 
 const LivepeerAPIForm: React.FC<{}> = () => {
   const { step, nextStep, prevStep, stepDetails, updateStepDetails } = useCreateStream();
@@ -33,6 +33,7 @@ const LivepeerAPIForm: React.FC<{}> = () => {
               name="apikey"
               id="apikey"
               placeholder="Enter your API key here"
+              required
             />
             <div className="flex items-center justify-around py-4">
               <button type="button" className="btn w-36 btn-primary btn-outline" onClick={prevStep}>

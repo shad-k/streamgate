@@ -2,7 +2,8 @@ import React from 'react';
 import CreateStepper from '../components/create/CreateStepper';
 import CreateStreamProvider from '../components/create/CreateStreamProvider';
 
-import LivepeerAPIForm from '../components/LivepeerAPIForm';
+import LivepeerAPIForm from '../components/create/LivepeerAPIForm';
+import LitTokenGating from '../components/create/LitTokenGating';
 import useCreateStream from '../hooks/useCreateStream';
 
 // show form
@@ -26,7 +27,8 @@ const StepBody = () => {
       case 1:
         return <LivepeerAPIForm />;
       case 2:
-        return null;
+      case 3:
+        return <LitTokenGating />;
     }
   }, []);
   return renderStep(step);

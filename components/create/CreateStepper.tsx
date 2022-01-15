@@ -7,7 +7,7 @@ const CreateStepper: React.FC<{}> = () => {
     <ul className="steps">
       {steps.map((currentStep: string, index) => {
         return (
-          <li key={index + 1} className={`step ${index + 1 <= step ? 'step-primary' : ''}`}>
+          <li key={index + 1} className={`step ${index + 1 <= step ? 'step-primary' : 'text-white/50'}`}>
             {currentStep}
           </li>
         );
