@@ -12,7 +12,7 @@ const LivepeerAPIForm: React.FC<{}> = () => {
     const target = event.target as HTMLFormElement;
     const { apikey } = target;
 
-    updateStepDetails(step - 1, {
+    updateStepDetails(step, {
       apiKey: apikey.value,
     });
     nextStep();
@@ -24,7 +24,7 @@ const LivepeerAPIForm: React.FC<{}> = () => {
       <div className="hero">
         <div className="hero-content w-full md:w-1/2">
           <form className="form-control w-full space-y-4" onSubmit={submitHandler}>
-            <label className="text-xl" htmlFor="apikey">
+            <label className="text-xl label label-text" htmlFor="apikey">
               Livepeer.com API Key
             </label>
             <input

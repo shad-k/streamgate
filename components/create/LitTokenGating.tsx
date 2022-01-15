@@ -17,7 +17,8 @@ const LitTokenGating: React.FC<{}> = () => {
       alert('Please enter a valid address');
       return;
     }
-    updateStepDetails(step - 1, {
+
+    updateStepDetails(step, {
       address: address.value,
       quantity: quantity.value,
       type: type.value,
@@ -25,6 +26,12 @@ const LitTokenGating: React.FC<{}> = () => {
     target.reset();
     nextStep();
   };
+
+  const skipStep = () => {
+    updateStepDetails(step, null);
+    nextStep();
+  };
+
   return (
     <div className="pb-4">
       <div className="hero">
@@ -32,13 +39,13 @@ const LitTokenGating: React.FC<{}> = () => {
           <form className="form-control w-full space-y-4" onSubmit={submitHandler}>
             <label className="text-xl label" htmlFor="address">
               Token/NFT Contract Address
-              <button type="button" className="btn btn-outline btn-primary btn-xs" onClick={nextStep}>
+              <button type="button" className="btn btn-outline btn-primary btn-xs" onClick={skipStep}>
                 Skip
               </button>
             </label>
             <input
               className="input rounded-box input-primary"
-              defaultValue={stepDetails[step]?.apiKey}
+              defaultValue={stepDetails[step]?.address}
               name="address"
               id="address"
               placeholder="Enter a contract address"
@@ -47,15 +54,39 @@ const LitTokenGating: React.FC<{}> = () => {
             <div className="flex flex-col justify-start">
               <div className="text-xl label">Select token type</div>
               <label className="cursor-pointer label justify-start" htmlFor="ERC-20">
-                <input type="radio" name="type" className="radio" value="ERC-20" id="ERC-20" required />
+                <input
+                  type="radio"
+                  defaultChecked={stepDetails[step]?.type === 'ERC-20'}
+                  name="type"
+                  className="radio"
+                  value="ERC-20"
+                  id="ERC-20"
+                  required
+                />
                 <span className="label-text ml-2">ERC-20</span>
               </label>
               <label className="cursor-pointer label justify-start" htmlFor="ERC-721">
-                <input type="radio" name="type" className="radio" value="ERC-721" id="ERC-721" required />
+                <input
+                  type="radio"
+                  defaultChecked={stepDetails[step]?.type === 'ERC-721'}
+                  name="type"
+                  className="radio"
+                  value="ERC-721"
+                  id="ERC-721"
+                  required
+                />
                 <span className="label-text ml-2">ERC-721</span>
               </label>
               <label className="cursor-pointer label justify-start" htmlFor="ERC-1155">
-                <input type="radio" name="type" className="radio" value="ERC-1155" id="ERC-1155" required />
+                <input
+                  type="radio"
+                  defaultChecked={stepDetails[step]?.type === 'ERC-1155'}
+                  name="type"
+                  className="radio"
+                  value="ERC-1155"
+                  id="ERC-1155"
+                  required
+                />
                 <span className="label-text ml-2">ERC-1155</span>
               </label>
             </div>
@@ -64,7 +95,7 @@ const LitTokenGating: React.FC<{}> = () => {
             </label>
             <input
               className="input rounded-box input-primary"
-              defaultValue={stepDetails[step]?.apiKey}
+              defaultValue={stepDetails[step]?.quantity}
               name="quantity"
               id="quantity"
               type="number"

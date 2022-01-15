@@ -4,12 +4,8 @@ import CreateStreamProvider from '../components/create/CreateStreamProvider';
 
 import LivepeerAPIForm from '../components/create/LivepeerAPIForm';
 import LitTokenGating from '../components/create/LitTokenGating';
+import CreateStreamFinal from '../components/create/CreateStreamFinal';
 import useCreateStream from '../hooks/useCreateStream';
-
-// show form
-// save api key
-// add access constraints
-//
 
 const ResetButton = () => {
   const { reset } = useCreateStream();
@@ -27,8 +23,9 @@ const StepBody = () => {
       case 1:
         return <LivepeerAPIForm />;
       case 2:
-      case 3:
         return <LitTokenGating />;
+      case 3:
+        return <CreateStreamFinal />;
     }
   }, []);
   return renderStep(step);
