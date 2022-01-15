@@ -15,7 +15,7 @@ const CreateStreamProvider: React.FC<PropsWithChildren<{}>> = (props) => {
   const [step, setStep] = React.useState(1);
   const [stepDetails, setStepDetails] = React.useState([]);
 
-  const nextStep = () => setStep((val) => (val < 3 ? val + 1 : val));
+  const nextStep = () => setStep((val) => (val < 4 ? val + 1 : val));
   const prevStep = () => setStep((val) => (val > 1 ? val - 1 : val));
   const reset = () => {
     setStep(1);

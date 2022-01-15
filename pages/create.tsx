@@ -5,6 +5,7 @@ import CreateStreamProvider from '../components/create/CreateStreamProvider';
 import LivepeerAPIForm from '../components/create/LivepeerAPIForm';
 import LitTokenGating from '../components/create/LitTokenGating';
 import CreateStreamFinal from '../components/create/CreateStreamFinal';
+import ShowSnippet from '../components/create/ShowSnippet';
 import useCreateStream from '../hooks/useCreateStream';
 
 const ResetButton = () => {
@@ -26,6 +27,8 @@ const StepBody = () => {
         return <LitTokenGating />;
       case 3:
         return <CreateStreamFinal />;
+      case 4:
+        return <ShowSnippet />;
     }
   }, []);
   return renderStep(step);

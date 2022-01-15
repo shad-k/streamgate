@@ -53,41 +53,41 @@ const LitTokenGating: React.FC<{}> = () => {
             />
             <div className="flex flex-col justify-start">
               <div className="text-xl label">Select token type</div>
-              <label className="cursor-pointer label justify-start" htmlFor="ERC-20">
+              <label className="cursor-pointer label justify-start" htmlFor="ERC20">
                 <input
                   type="radio"
-                  defaultChecked={stepDetails[step]?.type === 'ERC-20'}
+                  defaultChecked={stepDetails[step]?.type === 'ERC20'}
                   name="type"
                   className="radio"
-                  value="ERC-20"
-                  id="ERC-20"
+                  value="ERC20"
+                  id="ERC20"
                   required
                 />
-                <span className="label-text ml-2">ERC-20</span>
+                <span className="label-text ml-2">ERC20</span>
               </label>
-              <label className="cursor-pointer label justify-start" htmlFor="ERC-721">
+              <label className="cursor-pointer label justify-start" htmlFor="ERC721">
                 <input
                   type="radio"
-                  defaultChecked={stepDetails[step]?.type === 'ERC-721'}
+                  defaultChecked={stepDetails[step]?.type === 'ERC721'}
                   name="type"
                   className="radio"
-                  value="ERC-721"
-                  id="ERC-721"
+                  value="ERC721"
+                  id="ERC721"
                   required
                 />
-                <span className="label-text ml-2">ERC-721</span>
+                <span className="label-text ml-2">ERC721</span>
               </label>
-              <label className="cursor-pointer label justify-start" htmlFor="ERC-1155">
+              <label className="cursor-pointer label justify-start" htmlFor="ERC1155">
                 <input
                   type="radio"
-                  defaultChecked={stepDetails[step]?.type === 'ERC-1155'}
+                  defaultChecked={stepDetails[step]?.type === 'ERC1155'}
                   name="type"
                   className="radio"
-                  value="ERC-1155"
-                  id="ERC-1155"
+                  value="ERC1155"
+                  id="ERC1155"
                   required
                 />
-                <span className="label-text ml-2">ERC-1155</span>
+                <span className="label-text ml-2">ERC1155</span>
               </label>
             </div>
             <label className="text-xl label" htmlFor="quantity">
