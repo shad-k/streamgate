@@ -1,19 +1,12 @@
 import axios from 'axios';
-import { LIVEPEER_API_URL, STREAM_PROFILES } from './constants';
+import { STREAM_PROFILES } from './constants';
 
 export const createStream = async ({ apiKey }, name) => {
-  const res = await axios.post(
-    `${LIVEPEER_API_URL}/stream`,
-    {
-      name: name || 'test_stream',
-      profiles: STREAM_PROFILES,
-    },
-    {
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${apiKey}`,
-      },
-    }
-  );
+  const res = await axios.post(`/api/createStream`, {
+    name: name || 'test_stream',
+    profiles: STREAM_PROFILES,
+    apiKey,
+  });
+  console.log(res);
   return res.data;
 };

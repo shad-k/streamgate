@@ -23,21 +23,21 @@ export const checkIfAccessControlAndSaveConditions = async (details, playbackId)
           value: details.quantity,
         },
       },
-      // {
-      //   operator: 'or',
-      // },
-      // {
-      //   // To authorize the creator of the stream irrespective of whether they satisfy the access control conditions
-      //   contractAddress: '',
-      //   standardContractType: '',
-      //   chain: 'ethereum',
-      //   method: '',
-      //   parameters: [':userAddress'],
-      //   returnValueTest: {
-      //     comparator: '=',
-      //     value: authSig.address,
-      //   },
-      // },
+      {
+        operator: 'or',
+      },
+      {
+        // To authorize the creator of the stream irrespective of whether they satisfy the access control conditions
+        contractAddress: '',
+        standardContractType: '',
+        chain: 'ethereum',
+        method: '',
+        parameters: [':userAddress'],
+        returnValueTest: {
+          comparator: '=',
+          value: authSig.address,
+        },
+      },
     ];
     const resourceId = {
       baseUrl: window.location.host,
