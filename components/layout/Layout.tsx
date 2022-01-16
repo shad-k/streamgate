@@ -18,6 +18,12 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
         <div></div>
       </header>
       <main className="text-secondary-content w-full">{children}</main>
+      <footer className="footer footer-center text-info flex items-center justify-center bg-slate-700 h-10 fixed bottom-0">
+        Built by
+        <a className="text-info" href="https://github.com/shad-k">
+          Shadab Khan
+        </a>
+      </footer>
     </>
   );
 };

@@ -41,7 +41,7 @@ const Stream: React.FC<{}> = () => {
   }, [videoElement, playbackId]);
 
   return (
-    <div className="absolute top-0 left-0 w-screen h-screen bg-slate-500">
+    <div className="absolute top-0 left-0 w-screen h-screen bg-slate-500 z-10">
       <div data-vjs-player>
         {
           <video
