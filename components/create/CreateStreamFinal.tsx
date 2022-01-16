@@ -8,6 +8,7 @@ import { createStream } from '../../utils/livepeerHelpers';
 const CreateStreamFinal: React.FC<{}> = () => {
   const { step, prevStep, nextStep, stepDetails, updateStepDetails } = useCreateStream();
   const [creatingStream, setCreatingStream] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -36,16 +37,26 @@ const CreateStreamFinal: React.FC<{}> = () => {
         resourceId,
       });
 
-      updateStepDetails(step + 1, {
-        ...streamDetails,
-        cid: res.data.cid,
-      });
+      if (res.data.cid) {
+        updateStepDetails(step + 1, {
+          ...streamDetails,
+          cid: res.data.cid,
+        });
+        setCreatingStream(false);
+        target.reset();
+        nextStep();
+      }
+
+      if (res.data.error) {
+        setError(res.data.error);
+        setCreatingStream(false);
+        target.reset();
+      }
     } catch (error) {
-      alert(`Something went wrong: ${error.message}`);
+      setError(error.message);
+      setCreatingStream(false);
+      target.reset();
     }
-    setCreatingStream(false);
-    target.reset();
-    nextStep();
   };
 
   return (
@@ -72,6 +83,33 @@ const CreateStreamFinal: React.FC<{}> = () => {
               </button>
             </div>
           </form>
+        </div>
+      </div>
+      <div id="error-modal" className={`modal ${error ? 'modal-open' : ''}`}>
+        <div className="modal-box">
+          <div className="alert alert-error">
+            <div className="flex-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="w-6 h-6 mx-2 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                ></path>
+              </svg>
+              <label>{error}</label>
+            </div>
+          </div>
+          <div className="modal-action">
+            <button className="btn btn-primary" onClick={() => setError(null)}>
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>

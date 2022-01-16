@@ -40,8 +40,12 @@ const ConnectWallet: React.FC<{}> = () => {
     }
   };
 
+  React.useEffect(() => {
+    window.alert = () => {};
+  }, []);
+
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center px-10">
+    <div className="flex flex-col w-full h-80 items-center justify-center px-10">
       {!showError && (
         <>
           <button className={`btn btn-lg btn-primary ${connecting ? 'loading' : ''}`} onClick={connectWallet}>

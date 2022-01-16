@@ -6,7 +6,7 @@ const Stream: React.FC<{}> = () => {
   return (
     <div>
       {router.query.cid as string}
-      {router.query.playbackId as string}
+      {router.query.id as string}
     </div>
   );
 };

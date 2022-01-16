@@ -4,6 +4,7 @@ const pinata = pinataSDK('7a0b54fa91b15e840962', '0e55e60f4ee84ed921fa507d7f9016
 const requestHandler = async (req, res) => {
   const body = req.body;
   const { playbackId } = body;
+
   const options = {
     pinataMetadata: {
       name: playbackId,
@@ -20,7 +21,8 @@ const requestHandler = async (req, res) => {
       cid: result.IpfsHash,
     });
   } catch (error) {
-    res.statusCode = 500;
+    console.log(error.message);
+    res.statusCode = 200;
     res.json({
       error: 'Something went wrong while uploading the stream details to IPFS',
     });

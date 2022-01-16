@@ -4,12 +4,20 @@ import { verifyJwt } from 'lit-jwt-verifier';
 const streamMiddleware = async (req) => {
   const playbackId = req.page.params?.playbackId;
   const jwt = req.nextUrl.searchParams.get('jwt');
+  const token = req.cookies['token'];
 
   if (jwt) {
     const { payload, verified } = await verifyJwt({ jwt });
     if (verified && payload.path === `/stream/${playbackId}`) {
-      return NextResponse.rewrite(`/stream/${playbackId}`);
+      const res = NextResponse.redirect(`/stream/${playbackId}`);
+      res.cookie('token', jwt);
+      return res;
     }
+  }
+  if (token) {
+    const { payload, verified } = await verifyJwt({ jwt: token });
+    const res = NextResponse.next();
+    return res;
   }
   return new Response(JSON.stringify({ error: "You don't meet the access criteria" }), {
     status: 401,

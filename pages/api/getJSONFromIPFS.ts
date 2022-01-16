@@ -6,7 +6,6 @@ const requestHandler = async (req, res) => {
 
   try {
     const result = await axios.get(`https://gateway.pinata.cloud/ipfs/${cid}`);
-    console.log(body, result);
     const { playbackId, accessControlConditions, resourceId } = result.data;
     res.statusCode = 200;
     res.json({

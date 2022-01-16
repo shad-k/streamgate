@@ -13,9 +13,9 @@ const copyTextToClipboard = (text: string) => {
 
 const ShowSnippet: React.FC<{}> = () => {
   const { step, stepDetails } = useCreateStream();
-  const { streamKey, cid, playbackId } = stepDetails[step];
-  const streamUrl = `https://${window.location.host}/auth/${cid}/${playbackId}`;
-  const embedCode = `<iframe src=${streamUrl} height="400" width="500" />`;
+  const { streamKey, cid } = stepDetails[step];
+  const streamUrl = `https://${window.location.host}/auth/${cid}`;
+  const embedCode = `<iframe src=${streamUrl} height="400" width="500" allow="fullscreen"  />`;
 
   return (
     <div className="pb-4">
