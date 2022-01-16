@@ -39,9 +39,9 @@ const LitTokenGating: React.FC<{}> = () => {
           <form className="form-control w-full space-y-4" onSubmit={submitHandler}>
             <label className="text-xl label" htmlFor="address">
               Token/NFT Contract Address
-              <button type="button" className="btn btn-outline btn-primary btn-xs" onClick={skipStep}>
+              {/* <button type="button" className="btn btn-outline btn-primary btn-xs" onClick={skipStep}>
                 Skip
-              </button>
+              </button> */}
             </label>
             <input
               className="input rounded-box input-primary"
