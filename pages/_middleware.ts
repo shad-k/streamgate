@@ -6,10 +6,15 @@ const streamMiddleware = async (req) => {
   const jwt = req.nextUrl.searchParams.get('jwt');
   const token = req.cookies['token'];
 
-  if (jwt && !token) {
+  if (jwt) {
     const { payload, verified } = await verifyJwt({ jwt });
     if (verified && payload.path === `/stream/${playbackId}`) {
-      const res = NextResponse.redirect(`/stream/${playbackId}`);
+      let res;
+      if (token) {
+        res = NextResponse.next();
+      } else {
+        res = NextResponse.redirect(`/stream/${playbackId}`);
+      }
       res.cookie('token', jwt);
       return res;
     }
@@ -22,7 +27,7 @@ const streamMiddleware = async (req) => {
     }
   }
   return new Response(JSON.stringify({ error: "You don't meet the access criteria" }), {
-    status: 401,
+    status: 403,
     statusText: 'Unauthorized',
   });
 };
