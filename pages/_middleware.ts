@@ -6,7 +6,7 @@ const streamMiddleware = async (req) => {
   const jwt = req.nextUrl.searchParams.get('jwt');
   const token = req.cookies['token'];
 
-  if (jwt) {
+  if (jwt && !token) {
     const { payload, verified } = await verifyJwt({ jwt });
     if (verified && payload.path === `/stream/${playbackId}`) {
       const res = NextResponse.redirect(`/stream/${playbackId}`);
