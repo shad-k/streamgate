@@ -5,24 +5,26 @@ const streamMiddleware = async (req) => {
   const playbackId = req.page.params?.playbackId;
   const jwt = req.nextUrl.searchParams.get('jwt');
   const token = req.cookies['token'];
-
   if (jwt) {
     const { payload, verified } = await verifyJwt({ jwt });
     if (verified && payload.path === `/stream/${playbackId}`) {
       let res;
       if (token) {
         res = NextResponse.next();
+        res.cookie('token', jwt, { httpOnly: true, sameSite: 'none' });
+        return res;
       } else {
-        res = NextResponse.redirect(`/stream/${playbackId}`);
+        res = NextResponse.rewrite(`/stream/${playbackId}`);
+        res.cookie('token', jwt, { httpOnly: true, sameSite: 'none' });
+        return res;
       }
-      res.cookie('token', jwt);
-      return res;
     }
   }
   if (token) {
     const { payload, verified } = await verifyJwt({ jwt: token });
     if (verified && payload.path === `/stream/${playbackId}`) {
       const res = NextResponse.next();
+      res.cookie('token', token, { httpOnly: true, sameSite: 'none' });
       return res;
     }
   }
