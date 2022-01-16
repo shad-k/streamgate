@@ -16,8 +16,10 @@ const streamMiddleware = async (req) => {
   }
   if (token) {
     const { payload, verified } = await verifyJwt({ jwt: token });
-    const res = NextResponse.next();
-    return res;
+    if (verified && payload.path === `/stream/${playbackId}`) {
+      const res = NextResponse.next();
+      return res;
+    }
   }
   return new Response(JSON.stringify({ error: "You don't meet the access criteria" }), {
     status: 401,
